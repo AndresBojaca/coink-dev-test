@@ -1,0 +1,33 @@
+<div class="container">
+  <ion-input [(ngModel)]="numero" class="phone__input" type="tel" placeholder="( X X X - X X X X X X )"></ion-input>
+  <ion-grid class="keyboard">
+    <ion-row>
+      <ion-col size="4"><ion-button class="number" expand="full" (click)="ontapButton('1')">1</ion-button></ion-col>
+      <ion-col size="4"><ion-button class="number" expand="full" (click)="ontapButton('2')">2</ion-button></ion-col>
+      <ion-col size="4"><ion-button class="number" expand="full" (click)="ontapButton('3')">3</ion-button></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="4"><ion-button class="number" expand="full" (click)="ontapButton('4')">4</ion-button></ion-col>
+      <ion-col size="4"><ion-button class="number" expand="full" (click)="ontapButton('5')">5</ion-button></ion-col>
+      <ion-col size="4"><ion-button class="number" expand="full" (click)="ontapButton('6')">6</ion-button></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="4"><ion-button class="number" expand="full" (click)="ontapButton('7')">7</ion-button></ion-col>
+      <ion-col size="4"><ion-button class="number" expand="full" (click)="ontapButton('8')">8</ion-button></ion-col>
+      <ion-col size="4"><ion-button class="number" expand="full" (click)="ontapButton('9')">9</ion-button></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="4">
+        <ion-button expand="full" class="delete-button" (click)="delete()">
+          <ion-icon slot="icon-only" name="backspace-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+      <ion-col size="4"><ion-button class="number" expand="full" (click)="ontapButton('0')">0</ion-button></ion-col>
+      <ion-col size="4">
+        <ion-button shape="round" class="check-button" (click)="onSubmit()">
+          <ion-icon slot="icon-only" name="checkmark"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>

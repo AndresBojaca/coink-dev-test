@@ -1,0 +1,47 @@
+
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2rem;
+  text-align: center;
+}
+
+ion-input.phone__input{
+  color: #212121;
+  background-color: #00000005;
+  border-radius: 5px;
+  font-size: 24px;
+  --padding-top: 20px;
+  --padding-bottom: 20px;
+  box-shadow: 0px 5px 5px rgba(0,0,0, 0.1);
+}
+
+.keyboard{
+  margin-top: auto;
+  width: 100%;
+}
+
+.keyboard ion-button.number{
+  --background: transparent;
+  --box-shadow: none;
+  font-size: 32px; 
+  color: var(--coink-dark-green)
+}
+
+.keyboard ion-button.check-button{
+  --background: var(--coink-green);
+  --box-shadow: none;
+  font-size: 20px; 
+  color: var(--coink-white)
+}
+.keyboard ion-button.delete-button{
+  --background: transparent;
+  --box-shadow: none;
+  font-size: 35px; 
+  color: var(--coink-dark-green)
+}
+.delete-icon{
+  width: 100px;
+  height: auto;
+}

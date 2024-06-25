@@ -1,0 +1,46 @@
+<app-header>
+  <div class="header" [hidden]="currentStep !== 1">
+    <h1 class="header-text">NÚMERO CELULAR</h1>
+    <ion-img src="assets/step-1.svg" alt="Paso 1"></ion-img>
+  </div>
+  <div class="header" [hidden]="currentStep !== 2">
+    <h1 class="header-text">DATOS DE CUENTA</h1>
+    <ion-img src="assets/step-2.svg" alt="Paso 2"></ion-img>
+  </div>
+  <div class="header" [hidden]="currentStep !== 3">
+    <h1 class="header-text">FINALIZAR</h1>
+    <ion-img src="assets/step-3.svg" alt="Paso 3"></ion-img>
+  </div>
+</app-header>
+
+<ion-content [fullscreen]="true">
+  <div [hidden]="currentStep !== 1">
+    <div class="message">
+      <ion-img src="assets/Oink.svg" alt="Coink Phone"></ion-img>
+      <span>Para comenzar, por favor<br>ingresa <strong>tu número celular.</strong></span>
+    </div>
+    <app-phone-input></app-phone-input>
+  </div>
+
+  <div [hidden]="currentStep !== 2">
+    <div class="message">
+      <ion-img src="assets/Oink.svg" alt="Coink Phone"></ion-img>
+      <div class="message__text">
+        <h1>¿CUÁLES SON TUS DATOS?</h1>
+        <span>Ahora necesitamos saber algunos datos tuyos</span>
+      </div>
+    </div>
+    <app-account-data></app-account-data>
+  </div>
+
+  <div [hidden]="currentStep !== 3">
+    <div class="message">
+      <ion-img src="assets/Oink.svg" alt="Coink Phone"></ion-img>
+      <div class="message__text">
+        <h1>ESTAS MUY CERCA DE SER PARTE DE COINK.</h1>
+        <span>Solo es necesario que leas detenidamente el contrato que se encuentra al final de esta pantalla y lo aceptes.</span>
+      </div>
+    </div>
+    <app-info></app-info>
+  </div>
+</ion-content>

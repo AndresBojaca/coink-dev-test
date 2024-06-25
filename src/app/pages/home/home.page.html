@@ -1,0 +1,18 @@
+<ion-content [fullscreen]="true">
+  <div class="home">
+    <div class="home__content">
+      <img src="assets/coink-logo-home.svg" alt="Logo" class="home__logo">
+      <p class="home__text">LA ALCANCÍA QUE SIEMPRE <br> TE ACOMPAÑA</p>
+    </div>
+    <div class="home__buttons">
+      <div class="row">
+        <div class="col-md-6 col-sm-12 mb-3">
+          <app-coink-button text="Regístrate" variant="primary" (clicked)="onRegisterClick()"></app-coink-button>
+        </div>
+        <div class="col-md-6 col-sm-12">
+          <app-coink-button text="Ingresa" variant="secondary" (clicked)="onLoginClick()"></app-coink-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

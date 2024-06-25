@@ -1,0 +1,57 @@
+
+ion-content{
+  --padding-top: 25px;
+  --padding-bottom: 25px;
+  --padding-start: 25px;
+  --padding-end: 25px;
+}
+
+.header{
+  padding: 1rem 0 1rem 0;
+}
+
+.header ion-img{
+  height: auto;
+  width: 200px;
+  margin: auto;
+}
+
+.header-text{
+  font-size: 16px;
+  color: var(--coink-dark-green);
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: center;
+  margin: 0 0 1rem 0;
+}
+
+.message__text h1{
+  text-align: left;
+  font-size: 16px;
+  color: var(--coink-dark-green);
+  text-transform: uppercase;
+  font-weight: bold;
+  margin: 0 0 1rem 0;
+}
+
+.message{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem 0;
+  border-bottom: 2px solid var(--coink-green);
+  margin-bottom: 2rem;
+}
+
+.message span{
+  color: #757575;
+}
+
+.register{
+  padding: 25px;
+}
+.register ion-img{
+  width: 100px;
+  height: auto;
+}

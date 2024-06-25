@@ -1,0 +1,18 @@
+
+ion-toolbar{
+  --padding-start: .5rem;
+  --padding-end: .5rem;
+}
+
+.back-button{
+  --background: transparent;
+  --background-activated: transparent;
+  --background-hover: transparent;
+  --background-focused: transparent;
+  --box-shadow: none;
+  --color: var(--coink-green);
+  font-size: 20px;
+  --padding-start: 10px;
+  --padding-end: 10px;
+
+}

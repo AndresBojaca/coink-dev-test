@@ -1,0 +1,38 @@
+.coink-button {
+  width: 100%;
+  --padding-top: 20px;
+  --padding-bottom: 20px;
+  font-size: 16px;
+  color: var(--coink-dark-green);
+  border: none;
+  border-radius: 40px;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  transition: all 0.3s;
+}
+
+/* Primary */
+.coink-button.primary {
+  --background: var(--coink-green);
+  --background-hover: rgba(var(--coink-green-rgb), 0.9);
+  --background-activated: rgba(var(--coink-green-rgb), 0.6);
+  --background-focused: rgba(var(--coink-green-rgb), 0.9);
+  color: var(--coink-dark-green);
+  font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Secondary */
+
+.coink-button.secondary {
+  color: var(--coink-white);
+  --background: var(--coink-dark-green);
+  --background-hover: rgba(var(--coink-green-rgb), 0.9);
+  --background-activated: rgba(var(--coink-green-rgb), 0.6);
+  --background-focused: rgba(var(--coink-green-rgb), 0.9);
+  color: var(--coink-white);
+  font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+}
