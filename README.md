@@ -44,6 +44,8 @@ Este comando compilará el proyecto y generará los archivos optimizados en el d
 
 - **Ambiente de Desarrollo (serve):** Para ejecutar la aplicación en un servidor local durante el desarrollo, usa `ionic serve`.
 - **Ambiente de Producción (build optimizado):** Para construir una versión optimizada para producción, usa `ionic build --prod`.
+- **Instalacion APK:** Para instalar la apk generada arrastrela al emulador.
+
 
 ## Soporte
 
