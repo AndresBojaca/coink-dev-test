@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
-import { DatePickerModalComponent } from '../date-picker-modal/date-picker-modal.component';
 import { RegisterStepsService } from './../../../services/register-steps.service';
+import { DocumentTypesService } from 'src/app/services/document-types.service';
+import { GenderService } from 'src/app/services/genders.service';
 
 @Component({
   selector: 'app-account-data',
@@ -16,11 +17,18 @@ export class AccountDataComponent implements OnInit {
 
   //Stepper
   currentStep: number = 2;
+  //Flags
+  isLoadingGenders: boolean = false;
+  isLoadingDocumentTypes:boolean = false;
+
+  genders: any[] = [];
+  documentTypes: any[] = [];
 
   constructor(
     private fb: FormBuilder,
-    private modalController: ModalController,
-    private RegisterStepsService: RegisterStepsService
+    private RegisterStepsService: RegisterStepsService,
+    private DocumentTypesService: DocumentTypesService,
+    private GenderService: GenderService
   ) {
     this.accountDataForm = this.fb.group({
       documentType: ['', Validators.required],
@@ -35,8 +43,33 @@ export class AccountDataComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    // Cualquier lógica de inicialización si es necesaria
+  ngOnInit(): void {
+    this.getDocumentTypes();
+    this.loadGenders();
+  }
+
+  getDocumentTypes(): void {
+    this.DocumentTypesService.getDocumentTypes()
+      .subscribe(
+        (data) => {
+          console.log(data);
+          
+          this.documentTypes = data;
+          this.isLoadingDocumentTypes = false;
+          console.log('Tipos de documentos:', this.documentTypes);
+        },
+        (error) => {
+          console.error('Error al obtener tipos de documentos:', error);
+          this.isLoadingDocumentTypes = false;
+        }
+      );
+  }
+
+  loadGenders() {
+    this.GenderService.getGenders().subscribe(genders => {
+      this.genders = genders;
+      this.isLoadingGenders = false;
+    });
   }
 
   togglePinVisibility() {
@@ -47,29 +80,11 @@ export class AccountDataComponent implements OnInit {
     this.hideConfirmPin = !this.hideConfirmPin;
   }
 
-  async openDatePicker(controlName: string) {
-    const modal = await this.modalController.create({
-      component: DatePickerModalComponent,
-      componentProps: {
-        selectedDate: this.accountDataForm.get(controlName)?.value
-      }
-    });
-
-    modal.onDidDismiss().then((result) => {
-      if (result.data) {
-        this.accountDataForm.get(controlName)?.setValue(result.data.selectedDate);
-      }
-    });
-
-    return await modal.present();
-  }
-
   onSubmit() {
     if (this.accountDataForm.valid) {
       console.log(this.accountDataForm.value);
       //Stepper
-      this.RegisterStepsService.setCurrentStep(this.currentStep);
-      this.RegisterStepsService.nextStep();
+      this.RegisterStepsService.nextSegment();
     } else {
       console.log('Formulario no válido');
     }

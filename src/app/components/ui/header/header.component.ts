@@ -8,9 +8,11 @@ import { RegisterStepsService } from 'src/app/services/register-steps.service';
 })
 export class HeaderComponent {
 
+  selectedSegment!: string;
+
   constructor(public registerStepsService: RegisterStepsService) {}
 
-  prevStep() {
-    this.registerStepsService.prevStep();
+  prevSegment() {
+    this.registerStepsService.prevSegment();
   }
 }

@@ -9,6 +9,7 @@ export class CoinkButtonComponent {
   @Input() text: string = 'Button';
   @Input() type: string = 'button';
   @Input() variant: string = 'primary'; //Color por defecto
+  @Input() isDisabled: boolean = false;
   @Output() clicked = new EventEmitter<void>();
 
   handleClick() {

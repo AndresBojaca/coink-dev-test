@@ -7,10 +7,35 @@ ion-button {
   margin-top: 16px;
 }
 
+ion-input{
+  --border-color: #AAAAAA;
+  --color: #212121;
+}
+
 ion-title{
   color: var(--coink-dark-green);
   font-size: 16px;
   font-weight: bold;
   --padding-start: 0px;
   margin: 1.5rem 0;
+}
+
+.submit-container{
+  margin-top: 3rem;
+}
+
+
+//Errors
+ion-input .error{
+  --border-style: 
+}
+
+
+//Select Custom Colors
+ion-select::part(label) {
+  color: #AAAAAA;
+}
+
+ion-select::part(icon) {
+  color: var(--coink-dark-green);
 }

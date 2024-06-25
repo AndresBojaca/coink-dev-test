@@ -1,46 +1,39 @@
+
 <app-header>
-  <div class="header" [hidden]="currentStep !== 1">
+  <div class="header" [hidden]="selectedSegment !== 'phone-section'">
     <h1 class="header-text">NÚMERO CELULAR</h1>
     <ion-img src="assets/step-1.svg" alt="Paso 1"></ion-img>
   </div>
-  <div class="header" [hidden]="currentStep !== 2">
+  <div class="header" [hidden]="selectedSegment !== 'data-section'">
     <h1 class="header-text">DATOS DE CUENTA</h1>
     <ion-img src="assets/step-2.svg" alt="Paso 2"></ion-img>
   </div>
-  <div class="header" [hidden]="currentStep !== 3">
+  <div class="header" [hidden]="selectedSegment !== 'info-section'">
     <h1 class="header-text">FINALIZAR</h1>
     <ion-img src="assets/step-3.svg" alt="Paso 3"></ion-img>
   </div>
 </app-header>
 
-<ion-content [fullscreen]="true">
-  <div [hidden]="currentStep !== 1">
-    <div class="message">
-      <ion-img src="assets/Oink.svg" alt="Coink Phone"></ion-img>
-      <span>Para comenzar, por favor<br>ingresa <strong>tu número celular.</strong></span>
-    </div>
-    <app-phone-input></app-phone-input>
-  </div>
 
-  <div [hidden]="currentStep !== 2">
-    <div class="message">
-      <ion-img src="assets/Oink.svg" alt="Coink Phone"></ion-img>
-      <div class="message__text">
-        <h1>¿CUÁLES SON TUS DATOS?</h1>
-        <span>Ahora necesitamos saber algunos datos tuyos</span>
-      </div>
+<ion-content>
+  <div [ngSwitch]="selectedSegment">
+    <div *ngSwitchCase="'phone-section'">
+      <app-section-header [imgSrc]="'assets/Oink.svg'" [imgAlt]="'Coink Phone'" [headerText]="''"
+        [subText]="'<span>Para comenzar, por favor<br>ingresa <strong>tu número celular.</strong></span>'">
+      </app-section-header>
+      <app-phone-input></app-phone-input>
     </div>
-    <app-account-data></app-account-data>
-  </div>
-
-  <div [hidden]="currentStep !== 3">
-    <div class="message">
-      <ion-img src="assets/Oink.svg" alt="Coink Phone"></ion-img>
-      <div class="message__text">
-        <h1>ESTAS MUY CERCA DE SER PARTE DE COINK.</h1>
-        <span>Solo es necesario que leas detenidamente el contrato que se encuentra al final de esta pantalla y lo aceptes.</span>
-      </div>
+    <div *ngSwitchCase="'data-section'">
+      <app-section-header [imgSrc]="'assets/Oink-M.svg'" [imgAlt]="'Coink Phone'"
+        [headerText]="'¿CUÁLES SON TUS DATOS?'" [subText]="'Ahora necesitamos saber algunos datos tuyos'">
+      </app-section-header>
+      <app-account-data></app-account-data>
     </div>
-    <app-info></app-info>
+    <div *ngSwitchCase="'info-section'">
+      <app-section-header [imgSrc]="'assets/OinkPolicia.svg'" [imgAlt]="'Coink Phone'"
+      [headerText]="'ESTAS MUY CERCA DE SER PARTE DE COINK.'" [subText]="'Solo es necesario que leas detenidamente el contrato que se encuentra al final de esta pantalla y lo aceptes.'">
+    </app-section-header>
+      <app-info></app-info>
+    </div>
   </div>
 </ion-content>

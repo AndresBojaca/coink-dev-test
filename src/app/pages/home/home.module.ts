@@ -5,18 +5,18 @@ import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
-import { CoinkButtonComponent } from 'src/app/components/ui/coink-button/coink-button.component';
+import { CoinkButtonSharedModule } from 'src/app/shared/coink-button-shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule
+    HomePageRoutingModule,
+    CoinkButtonSharedModule
   ],
   declarations: [
     HomePage,
-    CoinkButtonComponent
   ]
 })
 export class HomePageModule {}

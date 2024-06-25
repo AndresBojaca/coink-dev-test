@@ -5,14 +5,16 @@
       <p class="home__text">LA ALCANCÍA QUE SIEMPRE <br> TE ACOMPAÑA</p>
     </div>
     <div class="home__buttons">
-      <div class="row">
-        <div class="col-md-6 col-sm-12 mb-3">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12" size-lg="6">
           <app-coink-button text="Regístrate" variant="primary" (clicked)="onRegisterClick()"></app-coink-button>
-        </div>
-        <div class="col-md-6 col-sm-12">
+          </ion-col>
+          <ion-col size="12" size-lg="6">
           <app-coink-button text="Ingresa" variant="secondary" (clicked)="onLoginClick()"></app-coink-button>
-        </div>
-      </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </div>
   </div>
 </ion-content>

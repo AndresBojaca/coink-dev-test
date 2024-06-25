@@ -1,29 +1,34 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RegisterStepsService {
 
-  private currentStepSubject = new BehaviorSubject<number>(1);
-  public currentStep$ = this.currentStepSubject.asObservable();
+  private segments: string[] = ['phone-section', 'data-section', 'info-section'];
+  private selectedSegmentIndex = new BehaviorSubject<number>(0);
+  selectedSegment$ = this.selectedSegmentIndex.asObservable();
 
-  getCurrentStep(): number {
-    return this.currentStepSubject.value;
-  }
+  constructor(private router: Router) {}
 
-  setCurrentStep(step: number): void {
-    this.currentStepSubject.next(step);
-  }
-
-  nextStep(): void {
-    this.currentStepSubject.next(this.currentStepSubject.value + 1);
-  }
-
-  prevStep(): void {
-    if (this.currentStepSubject.value > 1) {
-      this.currentStepSubject.next(this.currentStepSubject.value - 1);
+  prevSegment() {
+    if (this.selectedSegmentIndex.value > 0) {
+      this.selectedSegmentIndex.next(this.selectedSegmentIndex.value - 1);
     }
+    if(this.segments[this.selectedSegmentIndex.value] === 'phone-section'){
+      this.router.navigate(['/home']);
+    }
+  }
+
+  nextSegment() {
+    if (this.selectedSegmentIndex.value < this.segments.length - 1) {
+      this.selectedSegmentIndex.next(this.selectedSegmentIndex.value + 1);
+    }
+  }
+
+  getSelectedSegment() {
+    return this.segments[this.selectedSegmentIndex.value];
   }
 }

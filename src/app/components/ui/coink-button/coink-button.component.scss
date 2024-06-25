@@ -10,17 +10,19 @@
   cursor: pointer;
   font-family: 'Montserrat', sans-serif;
   transition: all 0.3s;
+  --box-shadow: none;
 }
 
 /* Primary */
 .coink-button.primary {
+  color: var(--coink-dark-green);
   --background: var(--coink-green);
   --background-hover: rgba(var(--coink-green-rgb), 0.9);
   --background-activated: rgba(var(--coink-green-rgb), 0.6);
   --background-focused: rgba(var(--coink-green-rgb), 0.9);
-  color: var(--coink-dark-green);
   font-weight: bold;
   font-family: 'Montserrat', sans-serif;
+  --box-shadow: 0 3px 6px rgba(var(--coink-green-rgb), 0.3)
 }
 
 /* Secondary */
@@ -31,8 +33,18 @@
   --background-hover: rgba(var(--coink-green-rgb), 0.9);
   --background-activated: rgba(var(--coink-green-rgb), 0.6);
   --background-focused: rgba(var(--coink-green-rgb), 0.9);
-  color: var(--coink-white);
-  font-weight: bold;
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
+}
+
+.coink-button.disabled {
+  color: #757575;
+  --background: #EEEEEE;
+  --background-hover: #EEEEEE;
+  --background-activated: #EEEEEE;
+  --background-focused: #EEEEEE;
+  font-family: 'Montserrat', sans-serif;
+  --box-shadow: none;
+  font-weight: bold;
+  opacity: 1;
 }

@@ -15,7 +15,6 @@ export class HomePage {
   }
 
   onLoginClick() {
-    this.router.navigate(['/login']);
   }
 
 }

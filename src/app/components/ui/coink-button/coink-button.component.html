@@ -1,3 +1,3 @@
-<ion-button [type]="type" class="coink-button {{variant}}" shape="round" (click)="handleClick()">
+<ion-button [type]="type" class="coink-button {{variant}}" shape="round" [ngClass]="{ 'disabled': isDisabled }" [disabled]="isDisabled" (click)="handleClick()">
   {{ text }}
 </ion-button>

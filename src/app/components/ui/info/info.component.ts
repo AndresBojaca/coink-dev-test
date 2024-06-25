@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-info',
@@ -7,8 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InfoComponent  implements OnInit {
 
-  constructor() { }
+  isChecked = false;
+  isDisabled = true;
 
+  constructor(private router: Router) {}
   ngOnInit() {}
+
+  handleCheckboxChange(event: any) {
+    this.isChecked = event.detail.checked;
+    this.isDisabled = !this.isChecked;
+  }
+
+  onSubmit() {
+    if (!this.isDisabled) {
+      // Lógica para enviar el formulario
+      this.router.navigate(['/dashboard']);
+    }
+  }
 
 }

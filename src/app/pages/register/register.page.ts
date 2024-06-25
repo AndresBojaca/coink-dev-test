@@ -1,40 +1,37 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { RegisterStepsService } from './../../services/register-steps.service';
+import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { RegisterStepsService } from 'src/app/services/register-steps.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss'],
 })
-export class RegisterPage implements OnInit, OnDestroy {
+export class RegisterPage implements OnInit {
 
-  currentStep: number = 1;
-  private stepSubscription!: Subscription;
+  selectedSegment!: string;
+  private subscription!: Subscription;
 
-  constructor(private registerStepsService: RegisterStepsService) {}
+  constructor(private RegisterStepsService: RegisterStepsService) {}
 
   ngOnInit() {
-    // Suscripción para observar cambios en currentStep del servicio
-    this.stepSubscription = this.registerStepsService.currentStep$.subscribe(step => {
-      console.log('currentStep ha cambiado:', step);
-      // Actualiza el currentStep local si es necesario
-      this.currentStep = step;
+    this.subscription = this.RegisterStepsService.selectedSegment$.subscribe(index => {
+      this.selectedSegment = this.RegisterStepsService.getSelectedSegment();
     });
   }
 
   ngOnDestroy() {
-    // Desuscribirse para evitar memory leaks
-    if (this.stepSubscription) {
-      this.stepSubscription.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
     }
   }
 
-  navigateToStep(step: number) {
-    this.registerStepsService.setCurrentStep(step);
+  prevSegment() {
+    this.RegisterStepsService.prevSegment();
   }
 
-  finish() {
-    console.log('Registro finalizado');
+  nextSegment() {
+    this.RegisterStepsService.nextSegment();
   }
+
 }

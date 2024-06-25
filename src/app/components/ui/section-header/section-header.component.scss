@@ -1,0 +1,22 @@
+.message__text h1{
+  text-align: left;
+  font-size: 16px;
+  color: var(--coink-dark-green);
+  text-transform: uppercase;
+  font-weight: bold;
+  margin: 0 0 1rem 0;
+}
+
+.message{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem 0;
+  border-bottom: 2px solid var(--coink-green);
+  margin: 0 auto 2rem auto;
+}
+
+.message span{
+  color: #757575;
+}

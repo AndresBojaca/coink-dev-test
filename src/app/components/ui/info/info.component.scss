@@ -1,4 +1,35 @@
 .info__text{
   font-size: 14px;
-  color: var(--coink-primary-text);
+  color: #323232;
 }
+
+h1{
+  color: var(--coink-dark-green);
+  font-size: 16px;
+  font-weight: bold;
+  --padding-start: 0px;
+}
+
+.contract-container{
+  margin-top: 2.5rem;
+  display: flex;
+  flex-direction: column;
+}
+.contract-container a{
+  margin-bottom: 1rem;
+  color: var(--coink-dark-green);
+  font-size: 16px;
+  font-weight: bold;
+  --padding-start: 0px;
+}
+
+.submit-container{
+  margin-top: 3rem;
+}
+
+ion-checkbox{ 
+  --checkbox-background-checked: var(--coink-green);
+  --border-color-checked: var(--coink-green);
+}
+
+

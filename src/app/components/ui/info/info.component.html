@@ -1,12 +1,13 @@
 <div>
+  <h1 class="info__text--title">LO MÁS IMPORTANTE</h1>
   <span class="info__text">
-    <h1 class="">LO MÁS IMPORTANTE</h1>
     Para la apertura del Depósito de Bajo Monto en COINK debes ser una persona natural que de acuerdo con nuestra
     legislación vigente te encuentres en plena capacidad para adquirir derechos y contraer obligaciones.
     <br>
     <br>
     Abrirás una cuenta COINK de Bajo Monto la cual te permitirá tener un saldo hasta por 8 salarios mínimos en el mes y
-    realizar débitos por el mismo valor. Si deseas sobrepasar estos límites debes solicitarnos la apertura de un Depósito
+    realizar débitos por el mismo valor. Si deseas sobrepasar estos límites debes solicitarnos la apertura de un
+    Depósito
     Ordinario COINK Persona Natural.
     <br>
     <br>
@@ -16,10 +17,15 @@
     <br>
     Recuerda que no necesitas saldo mínimo ni monto inicial para su apertura.
   </span>
-  <div class="">
+  <div class="contract-container">
       <a href="#">Lee tu contrato</a>
-      <ion-row>
-        <ion-checkbox labelPlacement="end">He leído ya acepto el contrato</ion-checkbox>
-      </ion-row>
+      <div>
+        <ion-checkbox labelPlacement="end" (ionChange)="handleCheckboxChange($event)">He leído ya acepto el contrato</ion-checkbox>
+      </div>
+  </div>
+  <div class="submit-container">
+    <app-coink-button text="ACEPTAR" variant="primary" [isDisabled]="isDisabled" [ngClass]="{'disabled': isDisabled}"
+      (clicked)="onSubmit()">
+    </app-coink-button>
   </div>
 </div>

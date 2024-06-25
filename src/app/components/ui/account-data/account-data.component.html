@@ -1,47 +1,111 @@
-<form [formGroup]="accountDataForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="accountDataForm">
   <ion-title>Documento de identidad</ion-title>
-  <ion-item>
-    <ion-select formControlName="documentType" placeholder="Tipo de documento">
-      <ion-select-option value="cc">Cédula de Ciudadanía</ion-select-option>
-      <ion-select-option value="ce">Cédula de Extranjería</ion-select-option>
-      <ion-select-option value="passport">Pasaporte</ion-select-option>
+
+  <!-- Campo de selección de tipo de documento -->
+  <ion-item *ngIf="isLoadingDocumentTypes">
+    <ion-spinner color="success"></ion-spinner>
+  </ion-item>
+  <ion-item *ngIf="!isLoadingDocumentTypes">
+    <ion-select formControlName="documentType" label="Tipo de documento" label-placement="floating"
+      placeholder="Tipo de documento" interface="popover">
+      <ion-select-option *ngFor="let type of documentTypes" [value]="type.notation">{{ type.description }}</ion-select-option>
     </ion-select>
   </ion-item>
+  <div
+    *ngIf="accountDataForm.get('documentType')?.hasError('required') && accountDataForm.get('documentType')?.touched">
+    <ion-text color="danger"><small>Tipo de documento es obligatorio*</small></ion-text>
+  </div>
+
+  <!-- Número de documento -->
   <ion-item>
     <ion-input type="text" formControlName="documentNumber" placeholder="Número de documento"></ion-input>
   </ion-item>
+  <div
+    *ngIf="accountDataForm.get('documentNumber')?.hasError('required') && accountDataForm.get('documentNumber')?.touched">
+    <ion-text color="danger"><small>Número de documento es obligatorio*</small></ion-text>
+  </div>
+
+  <!-- Fecha de expedición del documento -->
   <ion-item>
     <ion-input type="date" formControlName="documentIssueDate"
       placeholder="Fecha de expedición del documento"></ion-input>
-    <!-- <ion-datetime displayFormat="DD/MM/YYYY" placeholder="Fecha de expedición del documento" formControlName="documentIssueDate" interface="popover"></ion-datetime> -->
   </ion-item>
+  <div
+    *ngIf="accountDataForm.get('documentIssueDate')?.hasError('required') && accountDataForm.get('documentIssueDate')?.touched">
+    <ion-text color="danger"><small>Fecha de expedición del documento es obligatorio*</small></ion-text>
+  </div>
+
+  <!-- Fecha de nacimiento -->
   <ion-item>
     <ion-input type="date" formControlName="birthDate" placeholder="Fecha de nacimiento"></ion-input>
-    <!-- <ion-datetime displayFormat="DD/MM/YYYY" placeholder="Fecha de nacimiento" formControlName="birthDate" interface="popover"></ion-datetime> -->
   </ion-item>
-  <ion-item>
-    <ion-select formControlName="gender" placeholder="Género">
-      <ion-select-option value="male">Masculino</ion-select-option>
-      <ion-select-option value="female">Femenino</ion-select-option>
-      <ion-select-option value="other">Otro</ion-select-option>
+  <div *ngIf="accountDataForm.get('birthDate')?.hasError('required') && accountDataForm.get('birthDate')?.touched">
+    <ion-text color="danger"><small>Fecha de nacimiento es obligatorio*</small></ion-text>
+  </div>
+
+  <!-- Género -->
+  <ion-item *ngIf="isLoadingGenders">
+    <ion-spinner color="success"></ion-spinner>
+  </ion-item>
+  <ion-item *ngIf="!isLoadingGenders">
+    <ion-select formControlName="gender" label="Género" label-placement="floating" interface="popover">
+      <ion-select-option *ngFor="let gender of genders" [value]="gender">{{ gender }}</ion-select-option>
     </ion-select>
   </ion-item>
 
   <ion-title>Configura tu cuenta</ion-title>
+
+  <!-- Correo electrónico -->
   <ion-item>
     <ion-input type="email" formControlName="email" placeholder="Correo electrónico"></ion-input>
   </ion-item>
+  <div *ngIf="accountDataForm.get('email')?.hasError('required') && accountDataForm.get('email')?.touched">
+    <ion-text color="danger"><small>Correo electrónico es obligatorio*</small></ion-text>
+  </div>
+  <div *ngIf="accountDataForm.get('email')?.hasError('email') && accountDataForm.get('email')?.touched">
+    <ion-text color="danger"><small>Por favor, ingresa un correo electrónico válido*</small></ion-text>
+  </div>
+
+  <!-- Confirmar correo electrónico -->
   <ion-item>
     <ion-input type="email" formControlName="confirmEmail" placeholder="Confirmar correo electrónico"></ion-input>
   </ion-item>
+  <div
+    *ngIf="accountDataForm.get('confirmEmail')?.hasError('required') && accountDataForm.get('confirmEmail')?.touched">
+    <ion-text color="danger"><small>Confirmar correo electrónico es obligatorio*</small></ion-text>
+  </div>
+  <div *ngIf="accountDataForm.get('confirmEmail')?.hasError('email') && accountDataForm.get('confirmEmail')?.touched">
+    <ion-text color="danger"><small>Por favor, ingresa un correo electrónico válido*</small></ion-text>
+  </div>
+  <div *ngIf="accountDataForm.hasError('emailMismatch') && accountDataForm.get('confirmEmail')?.touched">
+    <ion-text color="danger"><small>Los correos electrónicos no coinciden*</small></ion-text>
+  </div>
+
+  <!-- PIN de seguridad -->
   <ion-item>
     <ion-input [type]="hidePin ? 'password' : 'text'" formControlName="securityPin"
       placeholder="PIN de seguridad"></ion-input>
-    <ion-icon slot="end" name="eye" (click)="togglePinVisibility()"></ion-icon>
+    <ion-icon slot="end" color="#212121" name="eye" (click)="togglePinVisibility()"></ion-icon>
   </ion-item>
+  <div *ngIf="accountDataForm.get('securityPin')?.hasError('required') && accountDataForm.get('securityPin')?.touched">
+    <ion-text color="danger"><small>PIN de seguridad es obligatorio*</small></ion-text>
+  </div>
+
+  <!-- Confirmar PIN de seguridad -->
   <ion-item>
     <ion-input [type]="hideConfirmPin ? 'password' : 'text'" formControlName="confirmPin"
       placeholder="Confirmar PIN de seguridad"></ion-input>
-    <ion-icon slot="end" name="eye" (click)="toggleConfirmPinVisibility()"></ion-icon>
+    <ion-icon slot="end" color="#212121" name="eye" (click)="toggleConfirmPinVisibility()"></ion-icon>
   </ion-item>
+  <div *ngIf="accountDataForm.get('confirmPin')?.hasError('required') && accountDataForm.get('confirmPin')?.touched">
+    <ion-text color="danger"><small>Confirmar PIN de seguridad es obligatorio*</small></ion-text>
+  </div>
+  <div *ngIf="accountDataForm.hasError('pinMismatch') && accountDataForm.get('confirmPin')?.touched">
+    <ion-text color="danger"><small>Los PINs no coinciden*</small></ion-text>
+  </div>
+
+  <div class="submit-container">
+    <app-coink-button text="Siguiente" variant="primary" [isDisabled]="!accountDataForm.valid"
+      (clicked)="onSubmit()"></app-coink-button>
+  </div>
 </form>

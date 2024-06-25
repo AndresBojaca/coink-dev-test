@@ -15,6 +15,7 @@ ion-input.phone__input{
   --padding-top: 20px;
   --padding-bottom: 20px;
   box-shadow: 0px 5px 5px rgba(0,0,0, 0.1);
+  --highlight-color-focused: transparent;
 }
 
 .keyboard{
@@ -35,13 +36,19 @@ ion-input.phone__input{
   font-size: 20px; 
   color: var(--coink-white)
 }
+.keyboard ion-button.check-button.disabled{
+  --background: #D3D3D3;
+  --box-shadow: none;
+  font-size: 20px; 
+  color: var(--coink-white);
+  opacity: 1;
+}
 .keyboard ion-button.delete-button{
   --background: transparent;
   --box-shadow: none;
   font-size: 35px; 
   color: var(--coink-dark-green)
 }
-.delete-icon{
-  width: 100px;
-  height: auto;
-}
+.keyboard ion-button.delete-button img{
+  min-width: 55px;
+} 
